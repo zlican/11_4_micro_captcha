@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="./static/loginStyle.css">
+</head>
+<body>
+    <div class="container">
+        <h2>登录</h2>
+        <form id="loginForm" action="/form" method="post">
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="手机号" required>
+            <div class="captcha">
+                <input type="text" id="captcha" name="captcha" placeholder="图片验证码" required>
+                <img src="captcha/1" onclick="this.src='/captcha/' + getUuid()" alt="验证码">
+            </div>
+            <div class="varify">
+                <input type="text" id="verification" name="verification" placeholder="手机验证码" required>
+                <button type="button" class="verify-button" onclick="getPhoneCode()" >获取</button>
+            </div>
+            
+            <button type="submit" class="loginButton" onclick="submitForm()">登录</button>
+        </form>
+        <div class="forgot">
+            <a href="#">寻求帮助?</a>
+        </div>
+    </div>
+
+    <script>
+        var uuid = "1"
+        function getUuid() {
+            uuid = String(Math.random())
+            return uuid
+        }
+
+        function submitForm() {
+            const phoneNumber = document.getElementById('phoneNumber');
+            const captcha = document.getElementById('captcha')
+            const verification = document.getElementById('verification');
+
+            document.getElementById('loginForm').addEventListener('submit', function() {
+            const formData = new FormData(this); // 获取表单数据
+
+            fetch('/form', { // 使用 Fetch API 发送 POST 请求
+                    method: 'POST',
+                    body: formData
+                    })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            });
+        }
+
+        async function getPhoneCode() {
+            const phoneNumber = document.getElementById("phoneNumber").value; 
+            const captcha = document.getElementById("captcha").value; 
+
+            if (!phoneNumber) {
+                alert("请输入电话号码！");
+                return;
+            }
+            await fetch(`http://127.0.0.1:8080/api/smscode/${phoneNumber}?captchaCode=${captcha}&uuid=${uuid}`)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                alert(data.message)
+            })
+
+    }
+
+    </script>
+</body>
+</html>

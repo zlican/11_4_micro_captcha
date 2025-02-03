@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #a1c4fd;
+}
+
+.captcha {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.captcha input {
+    flex: 1;
+}
+
+.captcha img {
+    height: 40px;
+    width: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.3); /* 内发光 */
+  }
+
+.loginButton {
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.verify-button {
+    background-color: #3498db; /* 蓝色背景 */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 3D阴影 */
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .verify-button:hover {
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3); /* 鼠标悬停时阴影加深 */
+  }
+  
+  .verify-button.disabled {
+    background-color: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.forgot {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgot a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot a:hover {
+    color: #a1c4fd;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        margin: 0 20px;
+    }
+}

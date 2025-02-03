@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="./static/userStyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23E2E8F0'/%3E%3Cpath d='M60 65.5c16.5 0 30-13.5 30-30S76.5 5.5 60 5.5 30 19 30 35.5s13.5 30 30 30zm0 15c-20 0-60 10-60 30v10h120v-10c0-20-40-30-60-30z' fill='%23A0AEC0'/%3E%3C/svg%3E" alt="用户头像">
+                </div>
+                <div class="profile-text">
+                    <h1>个人中心</h1>
+                    <p>管理您的个人信息和账户设置</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="info-card">
+                <h2>基本信息</h2>
+                <div class="info-item">
+                    <div class="info-label">用户名</div>
+                    <input type="text" class="info-value" value="张三" placeholder="请输入用户名">
+                </div>
+                <div class="info-item">
+                    <div class="info-label">昵称</div>
+                    <input type="text" class="info-value" value="快乐的小猪" placeholder="请输入昵称">
+                </div>
+                <div class="info-item">
+                    <div class="info-label">性别</div>
+                    <select class="info-value">
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">生日</div>
+                    <input type="date" class="info-value" value="1990-01-01">
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2>联系方式</h2>
+                <div class="info-item">
+                    <div class="info-label">手机号码</div>
+                    <input type="tel" class="info-value" value="138****8888" placeholder="请输入手机号">
+                </div>
+                <div class="info-item">
+                    <div class="info-label">电子邮箱</div>
+                    <input type="email" class="info-value" value="example@email.com" placeholder="请输入邮箱">
+                </div>
+                <div class="info-item">
+                    <div class="info-label">居住地</div>
+                    <input type="text" class="info-value" value="北京市朝阳区" placeholder="请输入居住地">
+                </div>
+                <div class="info-item">
+                    <div class="info-label">个人简介</div>
+                    <textarea class="info-value" rows="3" placeholder="请输入个人简介">热爱生活，享受coding的快乐~</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn">保存更改</button>
+            <button class="btn btn-secondary">取消</button>
+        </div>
+    </div>
+
+    <script>
+        // 处理头像上传
+        document.querySelector('.profile-avatar').addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if(file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.querySelector('.profile-avatar img').src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+            input.click();
+        });
+
+        // 处理表单保存
+        document.querySelector('.btn').addEventListener('click', function() {
+            // 这里添加保存逻辑
+            alert('保存成功！');
+        });
+    </script>
+</body>
+</html>

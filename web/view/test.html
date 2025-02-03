@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>test</h2>
+    <input type="file" id="test" accept="image/*">
+    <button onclick="uploadImage()">上传图片</button>
+
+    <script>
+        function uploadImage() {
+            const fileInput = document.getElementById('test');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('请先选择图片');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            fetch('/test/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('上传成功!');
+            })
+            .catch(error => {
+                alert('上传失败: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>
